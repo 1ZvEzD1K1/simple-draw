@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/simple-draw/static/css/main.c78db550.css",
+    "main.js": "/simple-draw/static/js/main.4bb85ad1.js",
+    "index.html": "/simple-draw/index.html",
+    "main.c78db550.css.map": "/simple-draw/static/css/main.c78db550.css.map",
+    "main.4bb85ad1.js.map": "/simple-draw/static/js/main.4bb85ad1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c78db550.css",
+    "static/js/main.4bb85ad1.js"
+  ]
+}
