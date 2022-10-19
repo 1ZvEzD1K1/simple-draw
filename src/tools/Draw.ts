@@ -48,7 +48,7 @@ export default class Draw {
       this.moveDots = [];
       this.mouseClickHandler(e);
       this.onMouseUp(e);
-      this.lines = this.lines.filter((el, id) => id != this.lines.length);
+      this.lines = this.lines.filter((el, id) => id !== this.lines.length);
       if (this.isCollapsing) {
         this.sleep(10).then(() => {
           this.onHadlerCollapse();
@@ -69,13 +69,13 @@ export default class Draw {
         e.pageX - e.target.offsetLeft,
         e.pageY - e.target.offsetTop,
         this.currentX,
-        this.currentX
+        this.currentY
       );
       this.getCollapsDots(
         e.pageX - e.target.offsetLeft,
         e.pageY - e.target.offsetTop,
         this.currentX,
-        this.currentX
+        this.currentY
       );
       this.moveDots.forEach((dot) => {
         this.drawCircle(dot.x, dot.y);
@@ -114,13 +114,13 @@ export default class Draw {
   }
 
   onHadlerCollapse(): void {
-    this.isCollapsing = this.lines.length != 0;
+    this.isCollapsing = this.lines.length !== 0;
     this.refreshCanvas();
     this.lines = this.lines
       .map((line) => {
         return this.collapseLines(line);
       })
-      .filter((line) => line.length != -1);
+      .filter((line) => line.length !== -1);
     if (this.isCollapsing) {
       this.sleep(10).then(() => {
         this.onHadlerCollapse();
