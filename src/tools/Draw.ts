@@ -49,14 +49,7 @@ export default class Draw {
       this.mouseClickHandler(e);
       this.onMouseUp(e);
       this.lines = this.lines.filter((el, id) => id !== this.lines.length);
-      if (this.isCollapsing) {
-        this.sleep(10).then(() => {
-          this.onHadlerCollapse();
-        });
-      } else {
-        this.dots = [...this.dots, ...this.moveDots];
-      }
-      this.moveDots = [];
+      this.refreshCollapse();
       this.refreshCanvas();
     }
   }
@@ -102,14 +95,7 @@ export default class Draw {
           length: targetLength,
         },
       ];
-      if (this.isCollapsing) {
-        this.sleep(10).then(() => {
-          this.onHadlerCollapse();
-        });
-      } else {
-        this.dots = [...this.dots, ...this.moveDots];
-      }
-      this.moveDots = [];
+      this.refreshCollapse();
     }
   }
 
@@ -121,14 +107,7 @@ export default class Draw {
         return this.collapseLines(line);
       })
       .filter((line) => line.length !== -1);
-    if (this.isCollapsing) {
-      this.sleep(10).then(() => {
-        this.onHadlerCollapse();
-      });
-    } else {
-      this.dots = [...this.dots, ...this.moveDots];
-    }
-    this.moveDots = [];
+    this.refreshCollapse();
     this.dots = [];
     for (let i = 0; i < this.lines.length; i++) {
       for (let j = i; j < this.lines.length; j++) {
@@ -138,6 +117,17 @@ export default class Draw {
         ];
       }
     }
+  }
+
+  refreshCollapse(): void {
+    if (this.isCollapsing) {
+      this.sleep(10).then(() => {
+        this.onHadlerCollapse();
+      });
+    } else {
+      this.dots = [...this.dots, ...this.moveDots];
+    }
+    this.moveDots = [];
   }
 
   drawLine(x: number, y: number, curX: number, curY: number): void {
